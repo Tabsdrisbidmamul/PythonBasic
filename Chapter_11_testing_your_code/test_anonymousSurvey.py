@@ -1,0 +1,37 @@
+"""
+We use the assertIn method to see if the response 'English' was stored in
+the list self.responses
+
+We also do another test to see if three list items were stored and assertIn
+to verify that it is True
+"""
+
+
+from unittest import TestCase
+from unittest import main
+from survey import AnonymousSurvey
+
+
+class TestAnonymousSurvey(TestCase):
+	"""Tests for the class AnonymousSurvey"""
+
+	def test_store_single_response(self):
+		"""Test that a single response is stored properly"""
+		question = "What language did you first learn to speak?"
+		my_survey = AnonymousSurvey(question)
+		my_survey.store_response("English")
+
+		self.assertIn("English", my_survey.responses)
+
+	def test_store_three_responses(self):
+		"""Test that three individual responses are stored properly"""
+		question = "What language did you first learn to speak?"
+		my_survey = AnonymousSurvey(question)
+		responses = ["English", "Spanish", "Mandarin"]
+		for response in responses:
+			my_survey.store_response(response)
+
+		for response in responses:
+			self.assertIn(response, my_survey.responses)
+
+# main()
